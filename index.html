@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRMS Attendance Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>HRMS Attendance Dashboard</h1>
+      <p class="subtitle">
+        Upload an Excel file with employee ID, name, punch in/out, and total time.
+        Attendance is calculated from the threshold (default: 8 hours).
+      </p>
+
+      <section class="controls">
+        <label class="file-upload">
+          <span>Upload Excel file</span>
+          <input id="fileInput" type="file" accept=".xlsx,.xls" />
+        </label>
+        <label>
+          Threshold (hours)
+          <input id="thresholdInput" type="number" min="0" step="0.25" value="8" />
+        </label>
+        <button id="sampleBtn" type="button">Load sample data</button>
+      </section>
+
+      <section class="cards" aria-live="polite">
+        <article class="card">
+          <h2>Total Employees</h2>
+          <p id="totalCount">0</p>
+        </article>
+        <article class="card success">
+          <h2>Present</h2>
+          <p id="presentCount">0</p>
+        </article>
+        <article class="card danger">
+          <h2>Absent</h2>
+          <p id="absentCount">0</p>
+        </article>
+      </section>
+
+      <section class="chart-wrap">
+        <canvas id="attendanceChart" aria-label="Attendance chart"></canvas>
+      </section>
+
+      <section>
+        <h2>Attendance Records</h2>
+        <div class="table-wrap">
+          <table id="attendanceTable">
+            <thead>
+              <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Punch In</th>
+                <th>Punch Out</th>
+                <th>Total Time (hrs)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
